@@ -1,0 +1,233 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.program-component * {
+  box-sizing: border-box;
+}
+.program-component {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  padding-top: 30em;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.program-component header {
+  flex: 1 0 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: black;
+  color: whitesmoke;
+
+  min-height: 10em;
+  /*transition: height 0.4s ease-in-out;*/
+  height: 30em;
+  top: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+.program-component .content {
+  flex: 1 0 0;
+  margin-left: 17em;
+  padding: 2em;
+  z-index: -3;
+  min-height: calc(100vh - 10em); /* 100% - altura del header*/
+}
+
+.program-component header .prog-info {
+  position: relative;
+  top: 10%; /* No se usa padding top por que es relativo al ancho*/
+  padding: 0 3em 0.9rem 4rem;
+  flex: 0 1 65%;
+}
+
+.program-component header .prog-info {
+}
+
+header .prog-info .prog-description {
+  transition: all 0.25s ease-in-out;
+}
+header.shrink .prog-info .prog-description {
+  opacity: 0;
+}
+
+.program-component header .prog-media-container {
+  flex: 0 1 35%;
+  overflow: hidden;
+
+
+  position: relative;
+
+}
+
+.prog-media-container img {
+  display: block;
+  width: auto;
+  height: 100%;
+  position: absolute;
+  right: 0;
+}
+
+.prog-info .prog-name {
+  line-height: 0.8;
+}
+
+.prog-info .prog-description {
+  color: lightgray;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+
+
+header .prog-data {
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  
+  padding: 10px;
+  background-color: black;
+  bottom: 0;
+}
+
+.prog-data .data-item {
+  padding: 5px 15px 5px 15px;
+  border-right: 1px solid whitesmoke;
+}
+
+.program-component .navigation-menu {
+  position: absolute;
+  left: 0;
+  top: 30em;
+  width: 17em;
+  
+  /*border: 3px solid #73ad21;*/
+  z-index: -2;
+  /*transition: top 0.4s ease-in-out;*/
+  height: calc(100vh - 10em); /* 100% - altura del header*/
+  background-color: whitesmoke;
+}
+
+.navigation-menu .item-icon {
+  text-align: center;
+  line-height: 1.4em;
+  display: inline-block;
+  height: 1.7em;
+  width: 1.7em;
+  border: 2px solid black;
+  background: white;
+  border-radius: 50%;
+  transform: scale(1);
+}
+
+.menu-item .sub-items-container {
+  margin: 0.25em 2em 0em 2em;
+}
+
+.sub-items-container .sub-item {
+  padding-bottom: 0.3em;
+  font-family: "Open Sans", sans-serif;
+}
+
+.menu-item .item-title {
+  margin-left: 0.5em;
+  display: inline-block;
+}
+.menu-item .sub-items-container {
+  margin-left: 0.5em;
+}
+
+.menu-item .item-content {
+  margin-left: 13px;
+}
+
+.item-content .item-name {
+  line-height: 1.5em; /*Misma altura que el icono para que se vea centrado*/
+}
+
+.navigation-menu .side-line {
+  position: absolute;
+  width: 1px;
+  height: 95%;
+  background-color: black;
+  top: 16px;
+}
+
+.navigation-menu .bottom-item {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background-color: white;
+  transform: scale(1);
+  font-family: "Times New Roman", Times, serif;
+  text-align: center;
+}
+
+.bottom-item .contact {
+  border: 2px solid;
+  padding: 5px;
+  margin: 10px auto;
+  width: 80%;
+  text-align: center;
+}
+
+.bottom-item .contac,
+.menu-item.active .item-icon {
+  border-color: rgb(252, 186, 0);
+}
+.menu-item.active .item-icon {
+  color: rgb(252, 186, 0);
+}
+
+.navigation-menu .menu-item {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  margin-left: calc(10% - 1.7em / 2); /*Centra el item con la linea*/
+  font-family: "Times New Roman", Times, serif;
+}
+.navigation-menu .side-line {
+  margin-left: 10%; /* (100% - anchoBotonContacto)/ 2 */
+}
+
+.item-content .item-name {
+  color: #686868;
+}
+.item-content .sub-item {
+  color: #a9a9a9;
+}
+/*Tamaños de Fuente*/
+.prog-header .prog-data {
+  font-size: 0.7em;
+}
+
+.item-content .sub-item {
+  font-size: 0.8em;
+}
+
+.prog-info .prog-type {
+  font-size: 1.813em;
+}
+.prog-info .prog-name {
+  font-size: 2.813em;
+}
+
+@media screen and (max-width: 768px) {
+  .program-component .content{
+    margin-left: 0;
+  }
+  .program-component .navigation-menu {
+    z-index: 0;    
+    
+  }
+
+  .program-component .navigation-menu.lelel{
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-100%);
+  }
+
+  
+}
