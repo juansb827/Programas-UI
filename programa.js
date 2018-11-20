@@ -1,8 +1,10 @@
+//http://leafo.net/sticky-kit/
 $(document).ready(function() {
   var elementPosition = 0;
   var headerInitialHeight = 0;
-  var contentEnd = 0;
-
+ 
+  //Distancia que se deben empujar hacia abajo los items fijos
+  var stickyOffset = 100;
   checkSize();
 
   /*$(window).resize(checkSize);*/
@@ -11,66 +13,48 @@ $(document).ready(function() {
   updateHeight();
 
   function checkSize() {
+    var navHeight = $("nav").outerHeight() - stickyOffset;
+    //$("nav").outerHeight(navHeight + "px");
     elementPosition = $(".prog-header").offset();
     headerInitialHeight = $(".prog-header").outerHeight();
-    contentEnd = $(".content").offset().top + $(".content").outerHeight();
-
+    
   }
 
-  /**
-   * Calcula porcentaje de avanze en un rango
-   *  e.g  en un rango [2,4]
-   *    3 estaria al 50%
-   *    4 100%
-   *    2 0%
-   */
-  function calcPercentage(init, end, current) {
-    var diff = end - init;
-    current = current - init;
-    if (current <= 0) {
-      //Evita que se retornen valores <= 0
-      return 0;
-    }
-    return Math.min(current / diff, 1);
-  }
+  $(".program-component .prog-header").stick_in_parent({
+    offset_top: stickyOffset,
+    bottoming: false
+  });
+
+  $(".program-component nav").stick_in_parent({
+    offset_top: $(".prog-header").outerHeight() + stickyOffset
+    /*spacer: false*/
+  });
 
   function updateHeight() {
+    return;
     var height = $(".prog-header").outerHeight();
-    
-    if ($(window).scrollTop() > elementPosition.top) {
-      $(".prog-header")
-        .css("position", "fixed")
-        .css("top", "0");
 
+    if ($(window).scrollTop() > elementPosition.top - stickyOffset) {
       var st = $(this).scrollTop();
-      var newHeight = headerInitialHeight - (st - elementPosition.top);
-      var minHeight = $(".prog-header")
-        .css("min-height")
-        .slice(0, -2);
+
+      //Calcula la nueva altura del header en base a la distancia scrolleada
+      var newHeight =
+        headerInitialHeight - (st - elementPosition.top + stickyOffset);
+      var minHeight = parseInt(
+        $(".prog-header")
+          .css("min-height")
+          .slice(0, -2)
+      );
 
       if (newHeight <= minHeight) {
+        //La nueva altura no puede ser menor que min-height
         newHeight = minHeight;
-
         $(".prog-header ").addClass("shrink");
       } else {
         $(".prog-header ").removeClass("shrink");
       }
 
       $(".prog-header").outerHeight(newHeight + "px");
-
-      $("nav")
-        .css("position", "fixed")
-        .css("top", newHeight + "px");
-    } else {
-      $(".prog-header").css("position", "absolute");
-
-      $("nav")
-        .css("position", "absolute")
-        .css("top", height + "px");
     }
   }
-
-  $("#target").click(function() {
-    alert("Handler for .click() called.");
-  });
 });

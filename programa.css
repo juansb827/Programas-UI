@@ -15,7 +15,8 @@ body {
 }
 
 .program-component header {
-  flex: 1 0 100%;
+  width: 100%;
+  flex: 0 0 100%;
   display: flex;
   flex-wrap: wrap;
   background-color: black;
@@ -31,7 +32,7 @@ body {
 
 .program-component .content {
   flex: 1 0 0;
-  margin-left: 17em;
+  margin-left: 17em; 
   padding: 2em;
   z-index: -3;
   min-height: calc(100vh - 10em); /* 100% - altura del header*/
@@ -54,26 +55,8 @@ header.shrink .prog-info .prog-description {
   opacity: 0;
 }
 
-.program-component header .prog-media-container {
-  flex: 0 1 35%;
-  overflow: hidden;
 
 
-  position: relative;
-
-}
-
-.prog-media-container img {
-  display: block;
-  width: auto;
-  height: 100%;
-  position: absolute;
-  right: 0;
-}
-
-.prog-info .prog-name {
-  line-height: 0.8;
-}
 
 .prog-info .prog-description {
   color: lightgray;
@@ -100,14 +83,14 @@ header .prog-data {
 
 .program-component .navigation-menu {
   position: absolute;
-  left: 0;
-  top: 30em;
+ 
+  
   width: 17em;
   
   /*border: 3px solid #73ad21;*/
   z-index: -2;
   /*transition: top 0.4s ease-in-out;*/
-  height: calc(100vh - 10em); /* 100% - altura del header*/
+  height: calc(100vh - 10em);  /* 100% - altura del header*/
   background-color: whitesmoke;
 }
 
@@ -208,20 +191,33 @@ header .prog-data {
   font-size: 0.8em;
 }
 
-.prog-info .prog-type {
+.prof-title .prog-type {
   font-size: 1.813em;
 }
-.prog-info .prog-name {
+.prof-title .prog-name {
   font-size: 2.813em;
 }
 
+.prof-title .prog-name {
+  line-height: 0.8;
+}
+
 @media screen and (max-width: 768px) {
+  
   .program-component .content{
     margin-left: 0;
   }
+
+  .program-component header{
+    flex-flow: column nowrap;
+  }
+  .prog-header .prog-info{
+    width: 100%;
+    order: 2;
+  }
+
   .program-component .navigation-menu {
-    z-index: 0;    
-    
+    z-index: 0;        
   }
 
   .program-component .navigation-menu.lelel{
@@ -229,5 +225,34 @@ header .prog-data {
     transform: translateX(-100%);
   }
 
+  .program-component header .prog-media-container{
+    width: 100%;
+    flex: 0 1 100%;
+  }
+
+  .prog-media-container img {
+    display: block;
+    width: 100%;     
+  }
+
   
+  
+}
+
+@media screen and (min-width:769px) {
+  .program-component header .prog-media-container {
+    flex: 0 1 35%;
+    overflow: hidden;
+    height: calc(100% - 32px);
+    position: relative;
+  
+  }
+  
+  .prog-media-container img {
+    display: block;
+    width: auto;
+    height: 100%;
+    position: absolute;
+    right: 0;
+  }
 }

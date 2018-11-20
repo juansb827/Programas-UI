@@ -1,0 +1,170 @@
+.program-list-component * {
+  box-sizing: border-box;
+}
+
+/*Header*/
+.program-list-component .list-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 10em;
+  background-color: rgb(48, 48, 48);
+  line-height: 10em;
+}
+
+.list-header h1{
+    color: white; font-size: 3.5em; font-weight: bold; display: inline-block; 
+}
+
+.list-header h1 div{
+    margin-left: 0.1em;
+    width:3em; 
+    height: 0.13em;
+}
+
+
+.program-list-component .grid-container {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.grid-container .card-container {
+  padding: 5px;
+}
+
+.card-container .program-card {
+  position: relative;
+  height: 22em;
+  background: gray;
+  padding: 15px;
+}
+
+.card-container .program-card:hover {
+}
+
+.card-background {
+  position: absolute;
+  background-image: url(https://uniandes.edu.co/sites/default/files/admisiones-registro.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.card-background:after {
+  content: "\A";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+  opacity: 0.5;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+
+.program-card:hover .card-background:after {
+  opacity: 0.85;
+}
+
+.program-card .program-info,
+.program-card .card-content .program-code {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.program-card:hover .program-info,
+.program-card:hover .program-code {
+  opacity: 1;
+}
+
+/* Contenido Card */
+.program-card .card-content {
+  position: relative;
+  height: 100%;
+  padding: 10px;
+
+  border: 1px solid red;
+}
+
+.card-content .program-name {
+  line-height: 1;
+  font-weight: bold;
+}
+
+.card-content .program-code {
+  display: block;
+  line-height: 0.7;
+  font-size: 0.8em;
+}
+
+.card-content .program-level {
+  display: block;
+}
+
+.card-content .card-button {
+  width: 9em;
+
+  right: 0;
+  left: 0;
+
+  margin: 0 auto;
+  position: absolute;
+  text-align: center;
+  border: 1px solid black;
+
+  bottom: 15px;
+  padding: 5px 10px;
+}
+
+.program-card .card-content,
+.program-card .card-button {
+  border-color: rgb(252, 186, 0);
+  transition: border-color 0.5s ease-in;
+}
+
+.program-card:hover .card-content {
+  border-color: transparent;
+}
+.program-card:hover .card-button {
+  border-color: white;
+}
+
+.program-list-component .program-card {
+  color: white;
+}
+
+.card-content .program-code,
+.card-content .item-sub-label {
+  color: rgb(252, 186, 0);
+}
+
+
+.list-header h1 div{
+    background-color:rgb(252, 186, 0);
+}
+
+.card-content .program-level {
+  font-size: 0.8em;
+}
+
+.card-content .program-name {
+  font-size: 1.3em;
+}
+
+.program-card .program-info {
+  text-align: center;
+}
+.program-card .info-item {
+  line-height: 1;
+  display: block;
+  margin: 1em;
+}
+
+.info-item .item-sub-label {
+  font-size: 0.7em;
+  display: block;
+}
