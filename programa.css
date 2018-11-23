@@ -1,62 +1,54 @@
+
+
 body {
   margin: 0;
   padding: 0;
 }
+
 .program-component * {
   box-sizing: border-box;
 }
 .program-component {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
-  padding-top: 30em;
+  
   display: flex;
   flex-wrap: wrap;
   position: relative;
 }
 
-.program-component header {
+.program-component .prog-header {
+ 
+
   width: 100%;
   flex: 0 0 100%;
   display: flex;
   flex-wrap: wrap;
   background-color: black;
   color: whitesmoke;
-
-  min-height: 10em;
-  /*transition: height 0.4s ease-in-out;*/
-  height: 30em;
+  overflow: hidden;
   top: 0;
   position: absolute;
-  overflow: hidden;
+  
+}
+
+.program-component .toggle-header-mobile {
+  display: none;
 }
 
 .program-component .content {
+  position: relative;
   flex: 1 0 0;
-  margin-left: 17em; 
+  margin-left: 17em;
   padding: 2em;
-  z-index: -3;
+
   min-height: calc(100vh - 10em); /* 100% - altura del header*/
 }
 
-.program-component header .prog-info {
-  position: relative;
-  top: 10%; /* No se usa padding top por que es relativo al ancho*/
-  padding: 0 3em 0.9rem 4rem;
-  flex: 0 1 65%;
+.prog-header .prog-media-container,
+.prog-header .prog-info {
+  transition: opacity 0.25s ;
 }
-
-.program-component header .prog-info {
-}
-
-header .prog-info .prog-description {
-  transition: all 0.25s ease-in-out;
-}
-header.shrink .prog-info .prog-description {
-  opacity: 0;
-}
-
-
-
 
 .prog-info .prog-description {
   color: lightgray;
@@ -64,33 +56,34 @@ header.shrink .prog-info .prog-description {
   text-justify: inter-word;
 }
 
-
-
 header .prog-data {
   width: 100%;
   position: absolute;
   text-align: center;
-  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
   padding: 10px;
   background-color: black;
   bottom: 0;
 }
 
 .prog-data .data-item {
+  margin-top: 5px;
   padding: 5px 15px 5px 15px;
   border-right: 1px solid whitesmoke;
 }
 
 .program-component .navigation-menu {
   position: absolute;
- 
-  
+
   width: 17em;
-  
+
   /*border: 3px solid #73ad21;*/
-  z-index: -2;
+
   /*transition: top 0.4s ease-in-out;*/
-  height: calc(100vh - 10em);  /* 100% - altura del header*/
+  height: calc(100vh - 10em); /* 100% - altura del header*/
   background-color: whitesmoke;
 }
 
@@ -182,6 +175,7 @@ header .prog-data {
 .item-content .sub-item {
   color: #a9a9a9;
 }
+
 /*Tamaños de Fuente*/
 .prog-header .prog-data {
   font-size: 0.7em;
@@ -202,52 +196,164 @@ header .prog-data {
   line-height: 0.8;
 }
 
+.program-component #mobile-indicator {
+  display: none;
+}
+/*Mocks Header Footer y Contenido Estático */
+.mock-header {
+  height: 20em;
+}
+.mock-footer {
+  height: 30em;
+}
+
+.mock-sticky{
+  height: 100px;
+  display:block;
+  width: 100%;
+  background: blue;
+  position: fixed;
+  top: 0px;
+  z-index: 999;
+  border: 1px solid yellow;
+}
+
+
+/* Mobile-Only */
 @media screen and (max-width: 768px) {
-  
-  .program-component .content{
+
+  .program-component #mobile-indicator {
+    display: block;
+  } 
+
+  .program-component{
+    padding-top: 11.5em;
+  }
+  .program-component .content {
     margin-left: 0;
   }
-
-  .program-component header{
-    flex-flow: column nowrap;
+ 
+  
+  .program-component header {
+    min-height: 11em;     
+    height: 80vh; 
+    transition: height 0.25s;   
   }
-  .prog-header .prog-info{
+
+  .program-component .toggle-header-mobile {
+    
+    flex: 1 0 100%;
+    height: 1em;
+    font-size: 2em;
+  }
+
+  .prog-header .prof-title {
+    font-size: 12px;
+    padding: 30px;
+    padding-top: 10px;
+  }
+
+  .prog-header.shrinked .prog-media-container,
+  .prog-header.shrinked .prog-info {
+    opacity: 0;
+  }
+
+  .prog-header .content-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    overflow-y: auto;
+  }
+
+  .prog-header.shrinked .content-wrapper {
+    overflow-y: hidden;
+  }
+
+
+
+  .prog-header .prog-info {
+    padding: 2em;
+    padding-bottom: 6em;
     width: 100%;
     order: 2;
   }
 
   .program-component .navigation-menu {
-    z-index: 0;        
+    height: 100vh;
+    display: none;
   }
 
-  .program-component .navigation-menu.lelel{
+  .program-component .navigation-menu.lelel {
     transition: all 0.3s ease-in-out;
     transform: translateX(-100%);
   }
 
-  .program-component header .prog-media-container{
+  .program-component header .prog-media-container {
     width: 100%;
     flex: 0 1 100%;
   }
 
   .prog-media-container img {
     display: block;
-    width: 100%;     
+    width: 100%;
   }
 
-  
-  
+  /*Z-Index*/
+  .program-component .navigation-menu {
+    z-index: 100;
+  }
+
+  .program-component header {
+    z-index: 200;
+  }
 }
 
-@media screen and (min-width:769px) {
-  .program-component header .prog-media-container {
-    flex: 0 1 35%;
-    overflow: hidden;
-    height: calc(100% - 32px);
-    position: relative;
-  
+/* Desktop */
+@media screen and (min-width: 769px) {
+
+  .mock-header {
+    height: 75em;
+  }
+  .mock-footer {
+    height: 40em;
   }
   
+  .mock-sticky {
+    height: 150px;
+  }
+
+
+  .prog-header .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+  }
+
+  .prog-header.shrinked .prog-info {
+    opacity: 0;
+  }
+
+  .prog-header .prof-title,
+  .prog-header .prog-info {
+    padding: 3em;
+    padding-top: 1em;
+  }
+
+  .prog-header .prof-title {
+    padding-bottom: 0;
+  }
+  .prog-header .prog-info {
+    padding-top: 1em;
+  }
+
+  .program-component header .prog-media-container {
+    overflow: hidden;
+    height: calc(100% - 32px);
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 35%;
+  }
+
   .prog-media-container img {
     display: block;
     width: auto;
@@ -255,4 +361,46 @@ header .prog-data {
     position: absolute;
     right: 0;
   }
+
+  .program-component {
+    padding-top: 40em; /*Debe ser igual a max-height del header*/
+  }
+  .program-component .prog-header {
+    min-height: 15em;
+    height: 40em; /*Debe ser igual al padding-top de .progam-component*/
+    max-height: 40em; /*Debe ser igual a max-height */
+  }
+
+  /*Z-Index*/
+  .program-component .content {
+    z-index: -100;
+  }
+  .program-component .navigation-menu {
+    z-index: -1;
+  }
 }
+
+@media screen and (min-width: 1024px) {
+
+  .mock-header {
+    height: 40em;
+  }
+  .mock-footer {
+    height: 50em;
+  }
+  
+  .mock-sticky {
+    top: 25px;
+    height: 190px;
+  }
+
+  .program-component {
+    padding-top: 32em;
+  }
+  .program-component .prog-header {
+    min-height: 11em;
+    height: 32em;
+    max-height: 32em;
+  }
+}
+
