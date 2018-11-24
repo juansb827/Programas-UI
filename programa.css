@@ -45,6 +45,10 @@ body {
   min-height: calc(100vh - 10em); /* 100% - altura del header*/
 }
 
+.prog-header .toggle-sidedrawer {
+  display: none;
+}
+
 .prog-header .prog-media-container,
 .prog-header .prog-info {
   transition: opacity 0.25s ;
@@ -204,7 +208,7 @@ header .prog-data {
   height: 20em;
 }
 .mock-footer {
-  height: 30em;
+  height: 60em;
 }
 
 .mock-sticky{
@@ -232,12 +236,21 @@ header .prog-data {
   .program-component .content {
     margin-left: 0;
   }
+
+ 
  
   
   .program-component header {
     min-height: 11em;     
     height: 80vh; 
     transition: height 0.25s;   
+  }
+
+  .prog-header .toggle-sidedrawer {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 
   .program-component .toggle-header-mobile {
@@ -279,11 +292,16 @@ header .prog-data {
 
   .program-component .navigation-menu {
     height: 100vh;
-    display: none;
+    /*display: none;*/   
   }
 
-  .program-component .navigation-menu.lelel {
-    transition: all 0.3s ease-in-out;
+  .program-component .navigation-menu.transitions{
+    transition: translate 0.3s ;
+    transition-property: transform, opacity;
+  }
+
+  .program-component .navigation-menu.closed {
+    opacity: 0;
     transform: translateX(-100%);
   }
 
@@ -299,7 +317,7 @@ header .prog-data {
 
   /*Z-Index*/
   .program-component .navigation-menu {
-    z-index: 100;
+    z-index: 300;
   }
 
   .program-component header {
