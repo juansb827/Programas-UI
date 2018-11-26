@@ -1,0 +1,141 @@
+@font-face {
+    font-family: 'bibliotecaAndes';
+    src:  url('fonts/bibliotecaAndes.eot?6xcf9v');
+    src:  url('fonts/bibliotecaAndes.eot?6xcf9v#iefix') format('embedded-opentype'),
+      url('fonts/bibliotecaAndes.ttf?6xcf9v') format('truetype'),
+      url('fonts/bibliotecaAndes.woff?6xcf9v') format('woff'),
+      url('fonts/bibliotecaAndes.svg?6xcf9v#bibliotecaAndes') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  [class^="icono-"], [class*=" icono-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'bibliotecaAndes' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icono-logoUniandesColombia:before {
+    content: "\e90b";
+  }
+  .icono-uniandes-fixed:before {
+    content: "\e908";
+  }
+  .icono-Play-solid:before {
+    content: "\e900";
+  }
+  .icono-play-border:before {
+    content: "\e901";
+  }
+  .icono-play:before {
+    content: "\e902";
+  }
+  .icono-busqueda:before {
+    content: "\e903";
+  }
+  .icono-Estructura:before {
+    content: "\e904";
+  }
+  .icono-Profesores:before {
+    content: "\e905";
+  }
+  .icono-Lapiz:before {
+    content: "\e906";
+  }
+  .icono-info:before {
+    content: "\e907";
+  }
+  .icono-Articulo:before {
+    content: "\e909";
+  }
+  .icono-Telefono:before {
+    content: "\e90a";
+  }
+  .icono-Investigacion:before {
+    content: "\e90c";
+  }
+  .icono-Educacion:before {
+    content: "\e90d";
+  }
+  .icono-Correo:before {
+    content: "\e90e";
+  }
+  .icono-Clases:before {
+    content: "\e90f";
+  }
+  .icono-double-prev:before {
+    content: "\e910";
+  }
+  .icono-double-next:before {
+    content: "\e912";
+  }
+  .icono-prev:before {
+    content: "\e911";
+  }
+  .icono-next:before {
+    content: "\e913";
+  }
+  .icono-down:before {
+    content: "\e914";
+  }
+  .icono-close:before {
+    content: "\e915";
+  }
+  .icono-up:before {
+    content: "\e916";
+  }
+  .icono-user:before {
+    content: "\e917";
+  }
+  .icono-notificacion:before {
+    content: "\e918";
+  }
+  .icono-ver-mas:before {
+    content: "\e919";
+  }
+  .icono-file-text:before {
+    content: "\e926";
+  }
+  .icono-phone:before {
+    content: "\e942";
+  }
+  .icono-location:before {
+    content: "\e947";
+  }
+  .icono-calendar:before {
+    content: "\e953";
+  }
+  .icono-plus:before {
+    content: "\ea0a";
+  }
+  .icono-minus:before {
+    content: "\ea0b";
+  }
+  .icono-google-plus:before {
+    content: "\ea8b";
+  }
+  .icono-facebook:before {
+    content: "\ea90";
+  }
+  .icono-twitter:before {
+    content: "\ea96";
+  }
+  .icono-youtube:before {
+    content: "\ea9d";
+  }
+  .icono-vimeo:before {
+    content: "\eaa0";
+  }
+  .icono-linkedin:before {
+    content: "\eaca";
+  }
+  

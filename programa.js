@@ -60,6 +60,7 @@ $(document).ready(function() {
 
     function onScrollDesktop() {
       updateHeaderHeightV2();
+      
     }
 
     function onScrollMobile() {      
@@ -73,23 +74,28 @@ $(document).ready(function() {
     function onWindowResize() {
       shrinked = false;
 
-      nav.trigger("sticky_kit:detach");
       header.trigger("sticky_kit:detach");
+      nav.trigger("sticky_kit:detach");
+      
 
       var newMode = $("#mobile-indicator").is(":visible")
         ? "MOBILE"
         : "DESKTOP";
 
       if (newMode !== currentMode && newMode === 'DESKTOP') { //Cambio a DESKTOP
-        disableMobile(); //
+        disableMobile(); 
+        $(document.body).trigger("sticky_kit:recalc");
       }
 
       checkSize(newMode);
       nav.outerHeight(navHeight + "px");
 
       header.stick_in_parent({
-        offset_top: offsetHeader
+        offset_top: offsetHeader,
+        recalc_every: newMode === 'DESKTOP' ? 1 : 0
       });
+     
+    
 
       nav.stick_in_parent({
         offset_top: offsetNavbar
@@ -114,8 +120,9 @@ $(document).ready(function() {
         
       }
       currentMode = newMode;
-      if (currentMode === 'DESKTOP') {
+      if (currentMode === 'DESKTOP') {        
         updateHeaderHeightV2();
+        
       }
       
     }
@@ -129,23 +136,24 @@ $(document).ready(function() {
         st,
         stickyOffset
       );
-
+      
       if (newHeight === minHeight) {
         header.addClass("shrinked");
+        
         if (!shrinked) {
           shrinked = true;
+         $(document.body).trigger("sticky_kit:recalc");  
+          console.log('recalc');
         }
       } else {
+        
         header.removeClass("shrinked");
       }
 
       header.outerHeight(newHeight + "px");
       /*programComponent.css('padding-top', newHeight + "px"); */
 
-      if (shrinked === true) {
-        $(document.body).trigger("sticky_kit:recalc");
-        shrinked = false;
-      }
+     
     }
 
    
@@ -171,9 +179,9 @@ $(document).ready(function() {
       offsetNavbar = stickyOffset + minHeight;
     }
 
-    maxHeight = header.css("max-height").slice(0, -2);
+    maxHeight = parseInt(header.css("max-height").slice(0, -2));
     
-    
+    console.log(minHeight, maxHeight, stickyOffset);
     
   }
 

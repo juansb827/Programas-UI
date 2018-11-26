@@ -23,6 +23,7 @@ body {
   width: 100%;
   flex: 0 0 100%;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   background-color: black;
   color: whitesmoke;
@@ -30,6 +31,11 @@ body {
   top: 0;
   position: absolute;
   
+}
+
+.prog-header .content-wrapper {
+  flex: 1 1 0;
+  overflow: hidden;
 }
 
 .program-component .toggle-header-mobile {
@@ -49,9 +55,35 @@ body {
   display: none;
 }
 
+.prog-header .prog-media-container img{
+  display: none;
+}
+
+.prog-header .prog-media-container{
+  position: relative;
+  background-image: url('program-bg.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+
+
+.prog-header .prog-media-container::after {
+  display: block;
+  position: absolute;
+  bottom: -15px;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, black 100%);
+  
+  height: 70%;
+  width: 100%;
+  content: '';
+}
+
+
 .prog-header .prog-media-container,
 .prog-header .prog-info {
-  transition: opacity 0.25s ;
+  transition: opacity 0.55s;
 }
 
 .prog-info .prog-description {
@@ -62,7 +94,7 @@ body {
 
 header .prog-data {
   width: 100%;
-  position: absolute;
+  flex: 0 0 auto;
   text-align: center;
   display: flex;
   flex-wrap: wrap;
@@ -81,9 +113,10 @@ header .prog-data {
 
 .program-component .navigation-menu {
   position: absolute;
-
+  display: flex;
+  flex-direction: column;
   width: 17em;
-
+  overflow-y: auto;
   /*border: 3px solid #73ad21;*/
 
   /*transition: top 0.4s ease-in-out;*/
@@ -91,6 +124,10 @@ header .prog-data {
   background-color: whitesmoke;
 }
 
+.navigation-menu .menu-container{
+  flex: 1 0 auto;
+  position: relative;
+}
 .navigation-menu .item-icon {
   text-align: center;
   line-height: 1.4em;
@@ -137,9 +174,9 @@ header .prog-data {
 }
 
 .navigation-menu .bottom-item {
-  position: absolute;
+  flex: 0 0 auto;
   width: 100%;
-  bottom: 0;
+  
   background-color: white;
   transform: scale(1);
   font-family: "Times New Roman", Times, serif;
@@ -212,7 +249,7 @@ header .prog-data {
 }
 
 .mock-sticky{
-  height: 100px;
+  height: 50px;
   display:block;
   width: 100%;
   background: blue;
@@ -222,6 +259,12 @@ header .prog-data {
   border: 1px solid yellow;
 }
 
+.program-component .prog-header {
+  z-index: 100;
+}
+.prog-header .prog-media-container {
+  z-index: 100;
+}
 
 /* Mobile-Only */
 @media screen and (max-width: 768px) {
@@ -285,10 +328,18 @@ header .prog-data {
 
   .prog-header .prog-info {
     padding: 2em;
-    padding-bottom: 6em;
+    
     width: 100%;
     order: 2;
   }
+
+  .prog-header .prog-media-container{
+    background: none;
+  }
+  .prog-header .prog-media-container img{
+    display: block;
+  }
+
 
   .program-component .navigation-menu {
     height: 100vh;
@@ -316,6 +367,8 @@ header .prog-data {
   }
 
   /*Z-Index*/
+
+ 
   .program-component .navigation-menu {
     z-index: 300;
   }
@@ -394,7 +447,7 @@ header .prog-data {
     z-index: -100;
   }
   .program-component .navigation-menu {
-    z-index: -1;
+    z-index: 0;
   }
 }
 
@@ -409,14 +462,14 @@ header .prog-data {
   
   .mock-sticky {
     top: 25px;
-    height: 190px;
+    height: 100px;
   }
 
   .program-component {
     padding-top: 32em;
   }
   .program-component .prog-header {
-    min-height: 11em;
+    min-height: 12em;
     height: 32em;
     max-height: 32em;
   }
