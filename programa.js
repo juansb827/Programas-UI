@@ -109,7 +109,7 @@ $(document).ready(function() {
           offset_top: offsetNavbar
         });
       } else {
-        //nav.css('fixed', offsetNavbar + 'px');
+        nav.css('fixed', offsetNavbar + 'px');
       }
 
       
@@ -139,7 +139,7 @@ $(document).ready(function() {
         updateHeaderHeight();
         
       }
-      $(document.body).trigger("sticky_kit:recalc");
+      setTimeout(()=>{$(document.body).trigger("sticky_kit:recalc")});
       
     }
 
