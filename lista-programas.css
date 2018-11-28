@@ -34,10 +34,26 @@
 }
 
 .card-container .program-card {
+  overflow: hidden;
   position: relative;
   height: 22em;
   background: gray;
   padding: 15px;
+}
+
+.program-card.new-program::after {
+  content: 'NUEVO';
+  position: absolute; 
+ background: lightcoral; transform: rotate(45deg); height: 4em; line-height: 6em;
+  position: absolute;
+    right: calc(-7em /2);
+    top: calc(-7em /2);
+    background: lightcoral;
+    transform: rotate(45deg);
+    height: 7em;
+    width: 7em;
+    text-align: center;
+    line-height: calc(7em * 1.8);
 }
 
 .card-container .program-card:hover {
@@ -45,7 +61,7 @@
 
 .card-background {
   position: absolute;
-  background-image: url(https://uniandes.edu.co/sites/default/files/admisiones-registro.jpg);
+  
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
@@ -91,7 +107,8 @@
 }
 
 .card-content .program-name {
-  line-height: 1;
+  display: inline-block;
+  line-height: 0.9;
   font-weight: bold;
 }
 

@@ -1,6 +1,6 @@
 //http://leafo.net/sticky-kit/
 $(document).ready(function() {
-
+  console.log('ds')
   var elementPosition = 0; //Posición inicial del
   var maxHeight = 0;
   var minHeight = 0;
@@ -19,15 +19,22 @@ $(document).ready(function() {
   var toggleNavbarBtn = $(".program-component .toggle-sidedrawer");
   var toggleHeaderBtn = $(".program-component .toggle-header-mobile");
   var nav = $(".program-component nav");
-  var stickyElement = $(".mock-sticky");
+  var stickyElement = $(componentProps.stickyElementSelector);
+
+
+  
 
   
   init();
-     setTimeout(()=>{
-        $(document.body).trigger("sticky_kit:recalc");
-      })
+  //setTimeout(()=>{$(document.body).trigger("sticky_kit:recalc")});
   nav.addClass('transitions');
- 
+     
+  
+  $('.video-icon').click(function () {      
+    lity(componentProps.videoURL);
+  });
+
+
 
   function init() {
     onWindowResize();
@@ -55,14 +62,15 @@ $(document).ready(function() {
     })
 
     function scrollListeners(){
-      $(window).scroll(function() {
-        console.log('CURRENT', currentMode);
+      $(window).scroll(handleScroll);
+      function handleScroll() {        
         if (currentMode === "MOBILE") {
           onScrollMobile();
         } else {
           onScrollDesktop();
         }
-      });
+        console.log('Scroll', $(window).scrollTop(), $('.content').offset().top);
+      }
     }
     scrollListeners();
     
@@ -80,6 +88,7 @@ $(document).ready(function() {
     }
 
     function onWindowResize() {
+      console.log('resize');
       shrinked = false;
       $(window).off('scroll');
       header.trigger("sticky_kit:detach");
@@ -123,8 +132,7 @@ $(document).ready(function() {
           nav.trigger("sticky_kit:detach");
           nav.css('position', 'fixed');
           nav.css('top', offsetNavbar);
-          setTimeout(() => {
-            $(document.body).trigger("sticky_kit:recalc");
+          setTimeout(() => {            
             if (
               $(".program-component .prog-header").css("position") === "fixed"
             ) {
@@ -188,12 +196,22 @@ $(document).ready(function() {
     if (mode === "MOBILE") {
       //En mobile ignora el CSS
       header.css("max-height", "calc(100vh - " + stickyOffset + "px)");      
+      programComponent.css("padding-top", "");
       navHeight = $(window).height() - stickyOffset;
       offsetNavbar = stickyOffset;
     } else {
-      //Elimina el style max-height que se pudo haber colocado en mobile
-      //para que tome el max-height que esta en CSS
+      //Si la altura maxima del header (configurada en css) es mayor al alto
+      //viewport, esta se reajusta 
+      
+          
+      header.css("max-height",  "calc(100vh - " + stickyOffset + "px)");  
+      var calculatedMax = parseInt(header.css("max-height").slice(0, -2));
       header.css("max-height", "");
+      var cssMaxHeight = parseInt(header.css("max-height").slice(0, -2));       
+      if (calculatedMax <= cssMaxHeight) { //Altura de css sobrepasa el alto de viewport
+        header.css("max-height", calculatedMax + 'px');
+        programComponent.css("padding-top", calculatedMax + 'px');
+      }      
       navHeight = $(window).height() - minHeight - stickyOffset;
       offsetNavbar = stickyOffset + minHeight;
     }

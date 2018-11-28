@@ -90,7 +90,12 @@ body {
   position: absolute;
   top: calc(50% - 7rem/2);
   left: calc(50% - 7rem/2);
-  z-index: -2; 
+  transition: opacity 0.3s ;
+  
+}
+
+.prog-media-container .video-icon:hover {
+  opacity: 0.5;
 }
 
 
@@ -295,6 +300,16 @@ header .prog-data {
 .prog-header .prog-media-container, .prog-header .prog-data {
   z-index: 100;
 }
+
+.prog-media-container .video-icon{ 
+  z-index: 1; 
+}
+
+.program-component header .prog-media-container,
+.program-component header .prog-media-container::after {
+  z-index: 0;
+}
+
 
 /* Mobile-Only */
 @media screen and (max-width: 768px) {
