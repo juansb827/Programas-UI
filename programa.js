@@ -20,13 +20,49 @@ $(document).ready(function() {
   var toggleHeaderBtn = $(".program-component .toggle-header-mobile");
   var nav = $(".program-component nav");
   var stickyElement = $(componentProps.stickyElementSelector);
+ 
+  var items = $(".program-component .content .content-item");
+  var contentItems = [];
+  for(var i=0; i<items.length; i++) {
+    contentItems.push($(items[i]));
+  }
 
+  var menuItemsList = $('.menu-container .menu-item');
+  var menuItemById = {}; 
 
   
 
   
+  function initMenuItems() {
+    for(var i=0; i<menuItemsList.length; i++) {
+      var menuItem = $(menuItemsList[i]);
+      var dataId = menuItem.attr('data-target');
+      menuItemById[dataId] = menuItem;    
+      setClickListener(menuItem, dataId);   
+      console.log($(menuItem.find('.item-name')));
+    }
+  
+    function setClickListener (menuItem, dataId) {
+      $(menuItem.find('.item-name')).click(function () {
+        var contentOffset = $('.content #'+dataId).offset();
+        if (contentOffset) {
+          $('html, body').animate({
+            scrollTop: contentOffset.top - offsetNavbar
+
+        }, 500);
+        
+        }
+       
+        console.log('Click',  dataId);
+      });
+    }
+  }
+  
+
+
+  initMenuItems();
   init();
-  //setTimeout(()=>{$(document.body).trigger("sticky_kit:recalc")});
+  
   nav.addClass('transitions');
      
   
@@ -64,15 +100,42 @@ $(document).ready(function() {
     function scrollListeners(){
       $(window).scroll(handleScroll);
       function handleScroll() {        
-        if (currentMode === "MOBILE") {
+        if (currentMode === 'MOBILE') {
           onScrollMobile();
         } else {
           onScrollDesktop();
         }
-        console.log('Scroll', $(window).scrollTop(), $('.content').offset().top);
+        updateActiveItem();
       }
     }
     scrollListeners();
+
+    function updateActiveItem() {
+      var activeItem = getActiveItem($(window).scrollTop(), contentItems, offsetNavbar + 100);
+      var dataId = activeItem.attr('id');
+      if ( menuItemById[dataId] ) {
+        menuItemsList.removeClass('active');
+        menuItemById[dataId].addClass('active');
+      }
+      
+    }
+
+    function getActiveItem(scrollTop, items, offset) {
+      scrollTop += offset;
+      var activeItem = items[0];
+
+      for (var i = 1; i< items.length; i++) {
+        var item = items[i];
+        var distanceFromTop = item.offset().top;
+        if(distanceFromTop <= scrollTop) {
+          activeItem = item;
+        }else{
+          break;
+        }
+      }
+      
+      return activeItem;
+    }
     
 
     function onScrollDesktop() {
@@ -132,7 +195,7 @@ $(document).ready(function() {
           nav.trigger("sticky_kit:detach");
           nav.css('position', 'fixed');
           nav.css('top', offsetNavbar);
-          setTimeout(() => {            
+          setTimeout(function ()  {            
             if (
               $(".program-component .prog-header").css("position") === "fixed"
             ) {
@@ -147,7 +210,8 @@ $(document).ready(function() {
         updateHeaderHeight();
         
       }
-      setTimeout(()=>{$(document.body).trigger("sticky_kit:recalc")});
+      setTimeout(function () { $(document.body).trigger("sticky_kit:recalc")});
+      updateActiveItem();
       
     }
 
@@ -166,7 +230,7 @@ $(document).ready(function() {
         
         if (!shrinked) {
           shrinked = true;
-         setTimeout(()=>{
+         setTimeout(function () {
           $(document.body).trigger("sticky_kit:recalc");  
          }, 0);
          
@@ -199,7 +263,7 @@ $(document).ready(function() {
       programComponent.css("padding-top", "");
       navHeight = $(window).height() - stickyOffset;
       offsetNavbar = stickyOffset;
-    } else {
+    } else { //DESKTOP
       //Si la altura maxima del header (configurada en css) es mayor al alto
       //viewport, esta se reajusta 
       

@@ -35,8 +35,12 @@ body {
 }
 
 .prog-header .content-wrapper {
-  flex: 1 1 0;
+  flex: 1;
   overflow: hidden;
+}
+
+.content-wrapper .prog-title{
+  flex: 1 0 auto;
 }
 
 .program-component .toggle-header-mobile {
@@ -196,6 +200,9 @@ header .prog-data {
 
 .item-content .item-name {
   line-height: 1.5em; /*Misma altura que el icono para que se vea centrado*/
+}
+.item-content .item-name:hover{
+  text-decoration: underline;
 }
 
 .navigation-menu .side-line {
