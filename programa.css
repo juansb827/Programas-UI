@@ -342,10 +342,20 @@ header .prog-data {
   }
 
   .prog-header .toggle-sidedrawer {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
+    font-size: 3rem;
+    padding: 1rem;
     top: 0;
     right: 0;
+    transform: rotateY(180deg);
+    transition: all 0.3s ease-in;
+  }
+
+  .prog-header.nav-closed .toggle-sidedrawer {
+    transform: none;
   }
 
   .program-component .toggle-header-mobile {
@@ -366,6 +376,10 @@ header .prog-data {
   .prog-header.shrinked .prog-info {
     opacity: 0;
   }
+  .prog-header.shrinked .data-item {
+    display: none;
+  }
+  
 
   .prog-header .content-wrapper {
     display: flex;
@@ -552,7 +566,7 @@ header .prog-data {
     z-index: -100;
   }
   .program-component .navigation-menu {
-    z-index: 0;
+    z-index: 1;
   }
 }
 
