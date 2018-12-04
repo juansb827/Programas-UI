@@ -65,6 +65,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  cursor: pointer;
 }
 
 .prog-header .prog-media-container:not(.playing-video) {
@@ -108,7 +109,7 @@ body {
 .prog-header .prog-media-container::after {
   display: block;
   position: absolute;
-  bottom: -15px;
+  bottom: -5px;
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, black 100%);
   
   height: 70%;
@@ -137,8 +138,8 @@ header .prog-data {
   flex-wrap: wrap;
   justify-content: center;
 
-  padding: 10px;
-  background-color: black;
+  padding: 3px;
+  background-color: transparent;
   bottom: 0;
 }
 
@@ -201,7 +202,11 @@ header .prog-data {
 .item-content .item-name {
   line-height: 1.5em; /*Misma altura que el icono para que se vea centrado*/
 }
-.item-content .item-name:hover{
+
+.item-content .item-name, .item-content .sub-item{
+  cursor: pointer;
+}
+.item-content .item-name:hover, .item-content .sub-item:hover{
   text-decoration: underline;
 }
 
@@ -269,10 +274,10 @@ header .prog-data {
 }
 
 .prof-title .prog-type {
-  font-size: 1.813em;
+  font-size: 1.9rem;
 }
 .prof-title .prog-name {
-  font-size: 2.813em;
+  font-size: 3.5rem;
 }
 
 .prof-title .prog-name {
@@ -304,8 +309,8 @@ header .prog-data {
 .program-component .prog-header {
   z-index: 100;
 }
-.prog-header .prog-media-container, .prog-header .prog-data {
-  z-index: 100;
+.prog-header .prog-data {
+  /*z-index: -1;*/
 }
 
 .prog-media-container .video-icon{ 
@@ -347,15 +352,18 @@ header .prog-data {
     align-items: center;
     position: absolute;
     font-size: 3rem;
+    width: 3rem;
+    
     padding: 1rem;
     top: 0;
     right: 0;
-    transform: rotateY(180deg);
-    transition: all 0.3s ease-in;
+    transform: rotateY(180deg);    
+    /*transition: all 0.3s;*/
   }
 
   .prog-header.nav-closed .toggle-sidedrawer {
-    transform: none;
+    transform: rotateY(0deg);
+    left: 0;
   }
 
   .program-component .toggle-header-mobile {
@@ -492,6 +500,14 @@ header .prog-data {
     height: 100%;
     z-index: 1;
   }
+
+  
+.prof-title .prog-type {
+  font-size: 1.3rem;
+}
+.prof-title .prog-name {
+  font-size: 2rem;
+}
   
  
   /*Z-Index*/
@@ -588,20 +604,28 @@ header .prog-data {
     padding-top: 32em;
   }
   .program-component .prog-header {
-    min-height: 12em;
+    min-height: 11em;
     height: 32em;
     max-height: 32em;
   }
+
+  
+.prof-title .prog-type {
+  font-size: 2.5rem;
+}
+.prof-title .prog-name {
+  font-size: 4rem;
+}
 }
 
 
 .bounce-upwards {
-  animation: bounce-upwards 2s infinite;
+  animation: bounce-upwards 3s infinite;
 }
 
 .bounce-downwards {
  
-  animation: bounce-downwards 2s infinite;
+  animation: bounce-downwards 3s infinite;
   
 }
 
@@ -616,7 +640,7 @@ header .prog-data {
     
   }
   60% {
-    transform: translateY-(10px) ;
+    transform: translateY(-10px) ;
    
   }
 }
