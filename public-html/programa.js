@@ -1,6 +1,5 @@
-//http://leafo.net/sticky-kit/
 $(document).ready(function() {
-  console.log("ds");
+  
   var elementPosition = 0; //Posición inicial del
   var maxHeight = 0;
   var minHeight = 0;
@@ -242,16 +241,24 @@ $(document).ready(function() {
     offsetHeader = stickyOffset;
     minHeight = parseInt(header.css("min-height").slice(0, -2));
     if (mode === "MOBILE") {
-      //En mobile ignora el CSS
+      
+      minHeight =  $('.content-wrapper .prof-title').outerHeight() +
+    $('.prog-header .toggle-header-mobile').outerHeight();
+    header.css("min-height", minHeight + 'px');
+
       header.css("max-height", "calc(100vh - " + stickyOffset + "px)");
       programComponent.css("padding-top", "");
       navHeight = $(window).height() - stickyOffset;
       offsetNavbar = stickyOffset;
+      
     } else {
       //DESKTOP
-      //Si la altura maxima del header (configurada en css) es mayor al alto
+     //La altura minima se ajusta a la cantidad de texto del titulo
+      minHeight =  $('.content-wrapper .prof-title').outerHeight() +
+    $('.prog-header .prog-data').outerHeight();
+     //Si la altura maxima del header (configurada en css) es mayor al alto
       //viewport, esta se reajusta
-
+    header.css("min-height", minHeight + 'px'); 
       header.css("max-height", "calc(100vh - " + stickyOffset + "px)");
       var calculatedMax = parseInt(header.css("max-height").slice(0, -2));
       header.css("max-height", "");
@@ -263,6 +270,9 @@ $(document).ready(function() {
       }
       navHeight = $(window).height() - minHeight - stickyOffset;
       offsetNavbar = stickyOffset + minHeight;
+
+     
+    
     }
 
     maxHeight = parseInt(header.css("max-height").slice(0, -2));
