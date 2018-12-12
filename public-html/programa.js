@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  
+ 
   var elementPosition = 0; //Posición inicial del
   var maxHeight = 0;
   var minHeight = 0;
@@ -40,6 +40,7 @@ $(document).ready(function() {
 
     function onItemClickHandler() {
       var dataId = $(this).attr("data-target");
+      console.log("onItemClickHandler", dataId);
       var contentOffset = $(".content #" + dataId).offset();
       if (contentOffset) {
         $("html, body").animate(
@@ -54,13 +55,15 @@ $(document).ready(function() {
 
   initMenuItems();
   init();
+  initBackgroundColor();
   nav.addClass("transitions");
+ 
+
 
   $(".program-component .prog-media-container").click(function() {
-    if ($(this).css('opacity') !== '0') {
+    if ($(this).css("opacity") !== "0") {
       lity(componentProps.videoURL);
     }
-    
   });
 
   function init() {
@@ -91,7 +94,7 @@ $(document).ready(function() {
       $(window).scroll(handleScroll);
       function handleScroll() {
         if (currentMode === "MOBILE") {
-          onScrollMobile();
+          //onScrollMobile();
         } else {
           onScrollDesktop();
         }
@@ -108,6 +111,15 @@ $(document).ready(function() {
       );
       var dataId = activeItem.attr("id");
       if (menuItemById[dataId]) {
+        var prevActive = $(".menu-container .menu-item.active").attr('data-target');
+        if (prevActive !== dataId) { //Scroll a una nueva seccion
+          console.log('active item changed');
+          $('.navigation-menu .menu-toggle').addClass('animate');
+          setTimeout(function(){
+            $('.navigation-menu .menu-toggle').removeClass('animate');
+          }, 500)
+          
+        }
         menuItemsList.removeClass("active");
         menuItemById[dataId].addClass("active");
       }
@@ -133,17 +145,16 @@ $(document).ready(function() {
     function onScrollDesktop() {
       updateHeaderHeight();
     }
-
+    /*
     function onScrollMobile() {
       if ($(".program-component .prog-header").css("position") == "fixed") {
         toggleHeaderBtn.show();
       } else {
         toggleHeaderBtn.hide();
       }
-    }
+    }*/
 
     function onWindowResize() {
-      console.log("resize");
       shrinked = false;
       $(window).off("scroll");
       header.trigger("sticky_kit:detach");
@@ -156,23 +167,21 @@ $(document).ready(function() {
       checkSize(newMode);
       nav.outerHeight(navHeight + "px");
 
-      header.stick_in_parent({
-        offset_top: offsetHeader,
-        recalc_every: null //newMode === 'DESKTOP' ? null : null
-      });
-
       if (newMode === "DESKTOP") {
         //Cambio a DESKTOP
+        header.stick_in_parent({
+          offset_top: offsetHeader,
+          recalc_every: null //newMode === 'DESKTOP' ? null : null
+        });
         disableMobile();
-      }
 
-      if (newMode === "DESKTOP") {
-        // newMode !== currentMode &&
         nav.stick_in_parent({
           offset_top: offsetNavbar
         });
       } else {
-        nav.css("fixed", offsetNavbar + "px");
+        console.log("here");
+        nav.css("position", "fixed");
+        nav.css("top", offsetNavbar);
       }
 
       scrollListeners();
@@ -181,11 +190,9 @@ $(document).ready(function() {
         //Cambio a MOBILE //newMode !== currentMode  &&
         navbarOpen = false;
         open = false;
-        toggleHeader(false);
+
         toggleNavbar(false);
-        nav.trigger("sticky_kit:detach");
-        nav.css("position", "fixed");
-        nav.css("top", offsetNavbar);
+
         setTimeout(function() {
           if (
             $(".program-component .prog-header").css("position") === "fixed"
@@ -241,24 +248,31 @@ $(document).ready(function() {
     offsetHeader = stickyOffset;
     minHeight = parseInt(header.css("min-height").slice(0, -2));
     if (mode === "MOBILE") {
-      
-      minHeight =  $('.content-wrapper .prof-title').outerHeight() +
-    $('.prog-header .toggle-header-mobile').outerHeight();
-    header.css("min-height", minHeight + 'px');
+      header.css("max-height", "auto");
+      header.css("height", "auto");
+      navHeight = $(window).height() - stickyOffset;
+      offsetNavbar = stickyOffset;
+      programComponent.css("padding-top", "");
+      minHeight = 0;
+      /*
+      minHeight =
+        $(".content-wrapper .prof-title").outerHeight() +
+        $(".prog-header .toggle-header-mobile").outerHeight();
+      header.css("min-height", minHeight + "px");
 
       header.css("max-height", "calc(100vh - " + stickyOffset + "px)");
       programComponent.css("padding-top", "");
-      navHeight = $(window).height() - stickyOffset;
-      offsetNavbar = stickyOffset;
       
+      */
     } else {
       //DESKTOP
-     //La altura minima se ajusta a la cantidad de texto del titulo
-      minHeight =  $('.content-wrapper .prof-title').outerHeight() +
-    $('.prog-header .prog-data').outerHeight();
-     //Si la altura maxima del header (configurada en css) es mayor al alto
+      //La altura minima se ajusta a la cantidad de texto del titulo
+      minHeight =
+        $(".content-wrapper .prof-title").outerHeight() +
+        $(".prog-header .prog-data").outerHeight();
+      //Si la altura maxima del header (configurada en css) es mayor al alto
       //viewport, esta se reajusta
-    header.css("min-height", minHeight + 'px'); 
+      header.css("min-height", minHeight + "px");
       header.css("max-height", "calc(100vh - " + stickyOffset + "px)");
       var calculatedMax = parseInt(header.css("max-height").slice(0, -2));
       header.css("max-height", "");
@@ -270,9 +284,6 @@ $(document).ready(function() {
       }
       navHeight = $(window).height() - minHeight - stickyOffset;
       offsetNavbar = stickyOffset + minHeight;
-
-     
-    
     }
 
     maxHeight = parseInt(header.css("max-height").slice(0, -2));
@@ -284,7 +295,7 @@ $(document).ready(function() {
     header.css("max-height", "");
     nav.removeClass("closed");
     header.css("position", "");
-    $(".program-component .prog-header .content-wrapper").scrollTop(0);
+    //$(".program-component .prog-header .content-wrapper").scrollTop(0);
   }
 
   function toggleNavbar(open) {
@@ -332,4 +343,57 @@ $(document).ready(function() {
 
     return initialHeight;
   }
+
+  function initBackgroundColor() {
+     
+    $.adaptiveBackground.run({
+      parent: "header",
+      success: function($img, data) {
+        
+        //console.log("Success!", $img, data);
+       var rgbColor = data.color.slice(4, -1).split(',');
+       //Usa como color de fuente el color mas lejano (negro o blanco) 
+       //del color dominate de la imagen
+       var contrast = getFurthestColor(rgbColor, [[255, 255, 255], [0, 0, 0]]);
+       contrast = 'rgb('+ contrast.join() +')';
+       
+       $(".prog-media-container .video-icon, .program-component .prog-header, .prog-data .data-item")
+        .css("color", contrast );
+        $('.prog-data .data-item').css("border-color", contrast );
+        $(".bottom-gradient").css(
+          "background-image",
+          "linear-gradient( to bottom, rgba(255, 255, 255, 0), " + data.color
+        );
+  
+        $(".left-gradient").css(
+          "background-image",
+          "linear-gradient( to left, rgba(255, 255, 255, 0), " + data.color
+        );
+      }
+    });
+  }
+  /**
+   * Retorna el color que este mas lejano de baseColor usando
+   * https://en.wikipedia.org/wiki/Color_difference
+   */
+  function getFurthestColor(color, colors) {
+     var r1 = color[0];
+     var g1= color[1];
+     var b1 = color[2];
+     var max = Number.MIN_VALUE;
+     var furthestColor = color;
+     colors.forEach(function(c) {
+       var r2 = c[0];
+       var g2 = c[1];
+       var b2 = c[2];
+       var distance = Math.pow(r2 - r1, 2) + Math.pow(g2 - g1, 2) + Math.pow(b2 - b1, 2);
+       if (distance > max) {
+         max = distance;
+         furthestColor = c;
+       }
+     });
+     return furthestColor;
+    //.slice(4, -1).split(',')
+  }
+
 });

@@ -19,9 +19,10 @@
     />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="jquery.sticky-kit.min.js"></script>
-    <script src="./lity/lity.min.js"></script>
-    <link rel="stylesheet" href="./lity/lity.min.css" />
+    <script src="./libs/jquery.sticky-kit.min.js"></script>
+    <script src="./libs/lity/lity.min.js"></script>
+    <script src="./libs/jquery.adaptive-backgrounds.js"></script>
+    <link rel="stylesheet" href="./libs/lity/lity.min.css" />
 
   
     
@@ -46,11 +47,12 @@
     </div>
     <div class="mock-sticky">STICKY</div>
     <div class="program-component">
+        
       <header class="prog-header ">
         <div class="content-wrapper">
           <div class="prof-title">
             <div class="prog-type">MAESTRÍA EN</div>
-            <b class="prog-name">HUMANIDADES DIGITALES ABCDEFGHIJK ABCDE ABCDEFG ABCDEFGH</b>
+            <b class="prog-name">HUMANIDADES DIGITALES</b>
           </div>
           <div class="prog-info">
             <p class="prog-description">
@@ -71,7 +73,10 @@
             </p>
           </div>
 
-          <div class="prog-media-container" style="">
+          <div class="prog-media-container" style="background-image: url('dark.jpg')"
+             data-adaptive-background data-ab-css-background >
+             <div class="bottom-gradient"></div>
+             <div class="left-gradient"></div>
            
         
             <span class="video-icon icono-Play-solid">
@@ -94,12 +99,15 @@
           >
           <span class="data-item">Dedicación: <b>Tiempo completo</b> </span>
         </div>
-        <div class="toggle-sidedrawer"><span class="icono-next"></span></div>
+        
       </header>
 
       <div style="position: relative; ">
-        <nav class="navigation-menu nav ">
+        
+        <nav class="navigation-menu nav">
+            
           <div class="menu-container">
+            <div class="menu-toggle toggle-sidedrawer"><span class="icono-next"></span></div>
             <div class="side-line"></div>
 
             <div class="menu-item" data-target="info-general">
@@ -143,6 +151,7 @@
             <div class="contact"><b>CONTACTO</b></div>
           </div>
         </nav>
+        
         <section class="content">
           <h1 id="info-general" class="content-item">Información General</h1>
           <p>
