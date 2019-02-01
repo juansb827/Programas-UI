@@ -159,16 +159,12 @@ header .prog-data {
   display: flex;
   flex-direction: column;
   width: 17em;
-  overflow-y: auto;
-  /*border: 3px solid #73ad21;*/
-
-  /*transition: top 0.4s ease-in-out;*/
-  height: calc(100vh - 10em); /* 100% - altura del header*/
-  /*background-color: transparent; */
+  overflow-y: auto; 
+  height: calc(100vh - 10em); /* 100% - altura del header*/ 
 }
 
 .navigation-menu .menu-container {
-  width: 90%;
+  width: 89%;
   flex: 1 0 auto;
   position: relative;
   background-color: whitesmoke;
@@ -230,7 +226,7 @@ header .prog-data {
 
 .navigation-menu .bottom-item {
   flex: 0 0 auto;
-  width: 90%;
+  width: 89%;
 
   background-color: white;
   transform: scale(1);
@@ -585,6 +581,10 @@ header .prog-data {
     min-height: 15em;
     height: 40em; /*Debe ser igual al padding-top de .progam-component*/
     max-height: 40em; /*Debe ser igual a max-height */
+  }
+
+  .navigation-menu .menu-container {
+    width: 100%;
   }
 
   /*Z-Index*/

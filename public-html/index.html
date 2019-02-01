@@ -30,8 +30,8 @@
     <link rel="stylesheet" href="./programa.css" />
     <script>
       var componentProps = {
-        videoURL: 'https://www.youtube.com/watch?v=wZZ7oFKsKzY',
-        stickyElementSelector: '.mock-sticky'
+        videoURL: 'https://www.youtube.com/watch?v=wZZ7oFKsKzY',  
+        stickyElementSelector: '.mock-sticky' //Selector al fijo que tiene la página,(e.g Header Uniandes)
       }
     </script>
     
@@ -43,9 +43,10 @@
       class="mock-header"
       style="border: 1px solid orangered; background-color: green"
     >
-      HEADER CONTENT
+      HEADER CONTENT <!-- Contenido que la página tiene antes de este componente-->
     </div>
-    <div class="mock-sticky">STICKY</div>
+    
+    <div class="mock-sticky">STICKY <!-- Objeto fijo que tiene la página,(e.g Header Uniandes) --></div>
     <div class="program-component">
         
       <header class="prog-header ">
@@ -73,7 +74,7 @@
             </p>
           </div>
 
-          <div class="prog-media-container" style="background-image: url('dark.jpg')"
+          <div class="prog-media-container" style="background-image: url('1.jpg')"
              data-adaptive-background data-ab-css-background >
              <div class="bottom-gradient"></div>
              <div class="left-gradient"></div>
@@ -153,7 +154,7 @@
         </nav>
         
         <section class="content">
-          <h1 id="info-general" class="content-item">Información General</h1>
+          <h1 id="info-general" class="item-header">Información General</h1>
           <p>
             semper felis. Cras ante libero, mattis ac sodales finibus, vulputate
             ac ligula. Vestibulum nec pretium magna. Nullam quis velit quis
@@ -246,7 +247,7 @@
             consectetur justo a dolor feugiat efficitur. Ut eget nisi vitae
             risus tincidunt rutrum. Cras gravida dolor at posuere ultricies. 
           </p>
-          <h1 id="info-cursos" class="content-item">Seccion 2</h1>
+          <h1 id="info-cursos" class="item-header">Seccion 2</h1>
           <p>
             semper felis. Cras ante libero, mattis ac sodales finibus, vulputate
             ac ligula. Vestibulum nec pretium magna. Nullam quis velit quis
@@ -316,7 +317,7 @@
             a orci ante. Vestibulum a diam pharetra, consequat sem at, commodo
             erat. Quisque eu nisl odio. Aliquam et pretium nibh
           </p>
-          <h1 id="info-estructura" class="content-item">Seccion 3</h1>
+          <h1 id="info-estructura" class="item-header">Seccion 3</h1>
           <p>
             semper felis. Cras ante libero, mattis ac sodales finibus, vulputate
             ac ligula. Vestibulum nec pretium magna. Nullam quis velit quis
