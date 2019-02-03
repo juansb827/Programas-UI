@@ -1,0 +1,193 @@
+@import "devices";
+@import "z-index";
+
+.prog-header {
+    width: 100%;
+    flex: 0 0 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: black;
+    overflow: hidden;
+    top: 0;
+    position: absolute;
+    @include z-index(header);
+
+    @media #{$break1}, #{$break2} {
+      position: relative;
+      min-height: 11em;
+      transition: height 0.25s;
+    }
+
+    @media #{$break3} {
+      min-height: 15em;
+      height: $header-max-height-desktop;
+      max-height: $header-max-height-desktop;
+    }
+
+    .content-wrapper {
+      flex: 1;
+      overflow: hidden;
+      @media #{$break1}, #{$break2} {
+        display: flex;
+        flex-flow: column nowrap;
+        overflow-y: auto;
+      }
+      @media #{$break3} {
+        display: flex;
+        flex-direction: column;
+        width: 65%;
+      }
+
+      .prog-title {
+
+				flex: 1 0 auto;
+
+				.prog-type {
+					font-size: 1.9rem;
+				}	
+
+				.prog-name {
+					font-size: 3.5rem;
+					line-height: 0.8;
+				}
+				
+				
+        @media #{$break1}, #{$break2} {
+          font-size: 12px;
+          padding: 30px;
+          padding-top: 10px;
+          .prog-type {
+            font-size: 1.3rem;
+          }
+          .prog-name {
+            font-size: 2rem;
+          }
+        }
+        @media #{$break3} {
+          padding: 3em;
+          padding-top: 1em;
+          padding-bottom: 0;
+        }
+      }
+    }
+
+    &.shrinked {
+      .prog-info {
+        opacity: 0;
+      }
+    }
+    .prog-info {
+      transition: opacity 0.55s;
+      @media #{$break1}, #{$break2} {
+        padding: 2em;
+        width: 100%;
+        order: 2;
+      }
+      @media #{$break3} {
+        padding: 3em;
+        padding-top: 1em;
+      }
+      .prog-description {
+        text-align: justify;
+        text-justify: inter-word;
+      }
+    }
+
+    .prog-media-container {
+      position: relative;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      height: calc(100% - 32px);
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 35%;
+      @include z-index(media-container);
+      &::after {
+        @include z-index(media-container);
+      }
+      @media #{$break1}, #{$break2} {
+        height: 0;
+        position: relative;
+        margin: 0 auto;
+        width: calc(100% - 4em);
+        flex: 0 1 100%;
+        padding-bottom: 56.25%;
+        img {
+          display: block;
+          width: 100%;
+        }
+      }
+
+      .video-icon {
+        font-size: 7rem;
+        position: absolute;
+        top: calc(50% - 7rem / 2);
+        left: calc(50% - 7rem / 2);
+        transition: opacity 0.3s;
+        @include z-index(video-icon);
+      }
+
+      .bottom-gradient/*.prog-header .prog-media-container::after*/ {
+        display: block;
+        position: absolute;
+        bottom: -5px;
+        background-image: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0),
+          rgba(0, 0, 0, 1)
+        );
+
+        height: 70%;
+        width: 100%;
+        content: "";
+      }
+
+      .left-gradient {
+        display: block;
+        position: absolute;
+
+        background-image: linear-gradient(
+          to left,
+          rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 1)
+        );
+        top: 0;
+        height: 100%;
+        width: 50%;
+        content: "";
+      }
+    }
+
+    .prog-data {
+      width: 100%;
+      position: relative;
+      flex: 0 0 auto;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      padding: 3px;
+      background-color: transparent;
+			bottom: 0;
+			font-size: 1.3rem;
+			
+
+      .data-item {
+        padding: 5px 15px 5px 15px;
+        border-right: 1px solid whitesmoke;
+        @media #{$break3} {
+          margin-top: 5px;
+          padding: 5px 15px 5px 15px;
+        }
+      }
+    }
+  }

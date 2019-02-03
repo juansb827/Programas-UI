@@ -232,7 +232,7 @@ $(document).ready(function() {
 
       //La altura minima del header se ajusta a la cantidad de texto del titulo
       minHeight =
-        $(".content-wrapper .prof-title").outerHeight() +
+        $(".content-wrapper .prog-title").outerHeight() +
         $(".prog-header .prog-data").outerHeight();
       header.css("min-height", minHeight + "px");
 

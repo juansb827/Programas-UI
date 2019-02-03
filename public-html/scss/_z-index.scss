@@ -1,0 +1,35 @@
+$z-index-basic: (
+  header: 100,
+  media-container: 0,
+  video-icon: 1,
+  menu-toggle: 0
+);
+$z-index-small: (
+  header: 200,
+  navigation-menu: 300
+);
+
+$z-index-large: (
+  content: -100,
+  navigation-menu: 1
+);
+
+@mixin z-index($key) {
+  z-index: auto;
+
+  @if map-has-key($z-index-basic, $key) {
+    z-index: map-get($z-index-basic, $key);
+  }
+
+  @if map-has-key($z-index-small, $key) {
+    @media #{$break1}, #{$break2} {
+      z-index: map-get($z-index-small, $key);
+    }
+  }
+
+  @if map-has-key($z-index-large, $key) {
+    @media #{$break3} {
+      z-index: map-get($z-index-large, $key);
+    }
+  }
+}

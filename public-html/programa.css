@@ -23,7 +23,7 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   background-color: black;
-  
+
   overflow: hidden;
   top: 0;
   position: absolute;
@@ -51,7 +51,7 @@ body {
   min-height: calc(100vh - 10em); /* 100% - altura del header*/
 }
 
-.prog-header .toggle-sidedrawer {
+.toggle-sidedrawer {
   display: none;
 }
 
@@ -64,7 +64,6 @@ body {
 }
 
 .prog-header .prog-media-container {
-  
 }
 
 .program-component header .prog-media-container {
@@ -79,18 +78,15 @@ body {
   width: 35%;
 }
 
-.prog-media-container .media-wrapper {
-  display: none;
-}
+
 
 .prog-media-container .video-icon {
-  font-size: 7rem;  
+  font-size: 7rem;
   position: absolute;
   top: calc(50% - 7rem / 2);
   left: calc(50% - 7rem / 2);
   transition: opacity 0.3s;
 }
-
 
 .bottom-gradient/*.prog-header .prog-media-container::after*/ {
   display: block;
@@ -99,7 +95,7 @@ body {
   background-image: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0),
-    rgba(0, 0,0, 1)  
+    rgba(0, 0, 0, 1)
   );
 
   height: 70%;
@@ -110,12 +106,11 @@ body {
 .left-gradient {
   display: block;
   position: absolute;
-  
+
   background-image: linear-gradient(
-    to left,        
+    to left,
     rgba(0, 0, 0, 0),
     rgba(0, 0, 0, 1)
-    
   );
   top: 0;
   height: 100%;
@@ -129,7 +124,6 @@ body {
 }
 
 .prog-info .prog-description {
-  
   text-align: justify;
   text-justify: inter-word;
 }
@@ -151,7 +145,6 @@ header .prog-data {
 .prog-data .data-item {
   padding: 5px 15px 5px 15px;
   border-right: 1px solid whitesmoke;
-  
 }
 
 .program-component .navigation-menu {
@@ -159,8 +152,8 @@ header .prog-data {
   display: flex;
   flex-direction: column;
   width: 17em;
-  overflow-y: auto; 
-  height: calc(100vh - 10em); /* 100% - altura del header*/ 
+  overflow-y: auto;
+  height: calc(100vh - 10em); /* 100% - altura del header*/
 }
 
 .navigation-menu .menu-container {
@@ -242,22 +235,17 @@ header .prog-data {
   text-align: center;
 }
 
-.prog-media-container .video-icon, .program-component .prog-header, .prog-data .data-item  {
-  color:rgb(245,245,245);
- 
+.prog-media-container .video-icon,
+.program-component .prog-header,
+.prog-data .data-item {
+  color: rgb(245, 245, 245);
 }
-.prog-data .data-item{  
-  border-color:rgb(245,245,245);
+.prog-data .data-item {
+  border-color: rgb(245, 245, 245);
 }
 .prog-media-container .video-icon:hover {
-  color:  rgba(245,245,245, 0.5);
+  color: rgba(245, 245, 245, 0.5);
 }
-
-
-
-
-
-
 
 .bottom-item .contac,
 .menu-item.active .item-icon {
@@ -309,7 +297,7 @@ header .prog-data {
   display: none;
 }
 
-.navigation-menu .menu-toggle{
+.navigation-menu .menu-toggle {
   display: none;
 }
 /*Mocks Header Footer y Contenido Estático */
@@ -362,12 +350,11 @@ header .prog-data {
 
   .program-component .prog-header {
     position: relative;
-    min-height: 11em;    
+    min-height: 11em;
     transition: height 0.25s;
   }
 
   /*Toggle SideDrawer*/
-
 
   .navigation-menu .menu-toggle {
     position: absolute;
@@ -382,8 +369,6 @@ header .prog-data {
     z-index: 0;
   }
 
-
-  
   .navigation-menu .menu-toggle span {
     display: inline-block;
     position: relative;
@@ -394,8 +379,9 @@ header .prog-data {
   .navigation-menu.closed .menu-toggle span {
     transform: rotateY(0deg);
   }
-  .navigation-menu .menu-toggle::before { /*Forma trapecio*/
-    content: ""; 
+  .navigation-menu .menu-toggle::before {
+    /*Forma trapecio*/
+    content: "";
     position: absolute;
     top: 0;
     bottom: 0;
@@ -407,10 +393,10 @@ header .prog-data {
     border-radius: 5px;
     transition: all 0.5s ease-in;
   }
-.navigation-menu.closed  .menu-toggle.animate::before {
-  background: rgb(252, 186, 0);
-}
- 
+  .navigation-menu.closed .menu-toggle.animate::before {
+    background: rgb(252, 186, 0);
+  }
+
   .prog-header.nav-closed .toggle-sidedrawer {
     transform: rotateY(0deg);
     left: 0;
@@ -428,15 +414,12 @@ header .prog-data {
     padding-top: 10px;
   }
 
- 
-
   .prog-header .content-wrapper {
     display: flex;
     flex-flow: column nowrap;
     overflow-y: auto;
   }
 
-  
   .prog-header .prog-info {
     padding: 2em;
     width: 100%;
@@ -571,7 +554,7 @@ header .prog-data {
 
   .prog-data .data-item {
     margin-top: 5px;
-    padding: 5px 15px 5px 15px;    
+    padding: 5px 15px 5px 15px;
   }
 
   .program-component {
